@@ -9,7 +9,7 @@ foreach($argv as $key=>$parameter) {
 		if($key == 1) {
 			$function_name = $parameter;
 		}
-		if($key > 1) {
+		if($key == 2) {
 			$function_parameters = $parameter;
 		}
 	}else {
