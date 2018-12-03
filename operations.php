@@ -21,6 +21,7 @@ class Operations {
 	*/
 	public function add($parameters) {
 		$addition = 0;
+		$negative_number = false;
 		if(!empty($parameters)) {
 			$seperater = ",";
 			#allowing support for different delimiters in addition
@@ -36,7 +37,13 @@ class Operations {
 			$values = explode($seperater, $parameters);
 		
 			foreach($values as $each_value) {			
+				#checking for negative_number
+				if($each_value < 0) $negative_number = true;
 				$addition += $each_value;
+			}
+			if($negative_number) {
+				echo "Negative numbers not allowed."; 
+				exit;
 			}
 		}
 		echo "Addition is : ".$addition;
