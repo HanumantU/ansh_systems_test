@@ -22,13 +22,19 @@ class Operations {
 	public function add($parameters) {
 		$addition = 0;
 		if(!empty($parameters)) {
+			$seperater = ",";
+			#allowing support for different delimiters in addition
+			if(preg_match('#\\\\\\\(.*?)\\\\\\\#im', $parameters, $match_delimiter)) {
+				$seperater = $match_delimiter[1];
+				$parameters = preg_replace('#\\\\\\\(.*?)\\\\\\\#', '', $parameters);
+			}
 			#matching `\n` in inpute array and exploding array on it, then combining all the elements of it to parameter string
 			if(preg_match('#\,|\\n#im', $parameters)) {
 				$slash_values = explode('\n', $parameters);
 				$parameters = implode(',', $slash_values);				
 			}
-			$values = explode(',', $parameters);
-			
+			$values = explode($seperater, $parameters);
+		
 			foreach($values as $each_value) {			
 				$addition += $each_value;
 			}
